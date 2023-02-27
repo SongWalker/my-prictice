@@ -17,9 +17,15 @@ package lc.my;
 public class lc416 {
     public static void main(String[] args) {
         int[] nums = {1,5,11,5};
-        canPartition(nums);
+        boolean res = canPartition(nums);
     }
 
+    /**
+     * 一个整型数组是否能划分为两个子数组，使得两个数组和相等
+     * 思路：转换为背包问题
+     * @param nums 输入一个整型数组
+     * @return 输出true/false
+     */
     public static boolean canPartition(int[] nums) {
         int sum = 0;
         for (int num : nums) {
@@ -38,6 +44,7 @@ public class lc416 {
                     dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - num] + num);
                 }
             }
+            //提前结束
             if(dp[i][max] == max) {
                 return true;
             }
